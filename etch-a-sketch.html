@@ -18,41 +18,63 @@
         let hieght = 16;
         let length = 16;
 
-        for (let i = 0; i < hieght*length; i++) 
-        {
+        const createGrid = (gridLength, gridHeight) => {
+        const totalSquares = gridLength * gridHeight;
+
+        for (let i = 0; i < totalSquares; i++) {
             const square = document.createElement('div');
             square.classList.add('grid-square');
-            container_div.appendChild(square);
 
-            square.addEventListener("mouseenter", ()=> 
-            {
+            // Dynamically set flex-basis so squares resize automatically
+            square.style.flex = `0 0 calc(100% / ${gridLength})`;
+            square.style.height = `calc(100% / ${gridHeight})`;
+
+            square.addEventListener("mouseenter", () => {
                 square.style.backgroundColor = "black";
-            })
+            });
 
-            square.addEventListener("mouseleave", ()=> 
-            {
-                setTimeout(()=> 
-                {
+            square.addEventListener("mouseleave", () => {
+                setTimeout(() => {
                     square.style.backgroundColor = "white";
-                }, 2000);         
-            })
+                }, 2000);
+            });
+
+            container_div.appendChild(square);
         }
+    };
+
+       createGrid(length,hieght);
+
 
         btn.addEventListener("click", ()=>
         {
             length = prompt("what do you want the new grid length to be?");
             hieght = prompt("what do you want the new grid hieght to be?");
 
+            let numLength = Number(length);
+            let numHeight = Number(hieght);
+            while (
+                isNaN(numLength) || isNaN(numHeight) ||
+                numLength > 100 || numHeight > 100 ||
+                numLength < 1 || numHeight < 1
+                ) {
+                    alert("Please enter valid numbers between 1 and 100.");
+    
+                    length = prompt("What do you want the new grid length to be?");
+                    hieght = prompt("What do you want the new grid height to be?");
+    
+                    numLength = Number(length);
+                    numHeight = Number(hieght);
+                }
+
             container_div.innerHTML = "";
+            createGrid(length,hieght);
         });
 
 
         
         document.body.appendChild(container_div);
         document.body.appendChild(btn);
-
- 
-
 
 
     </script>
