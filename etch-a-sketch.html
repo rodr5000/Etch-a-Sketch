@@ -13,8 +13,12 @@
         container_div.classList.add("container");
 
         const btn = document.createElement("button");
+        btn.textContent = "new grid"
 
-        for (let i = 0; i < 256; i++) 
+        let hieght = 16;
+        let length = 16;
+
+        for (let i = 0; i < hieght*length; i++) 
         {
             const square = document.createElement('div');
             square.classList.add('grid-square');
@@ -34,11 +38,18 @@
             })
         }
 
-        btn.add
+        btn.addEventListener("click", ()=>
+        {
+            length = prompt("what do you want the new grid length to be?");
+            hieght = prompt("what do you want the new grid hieght to be?");
+
+            container_div.innerHTML = "";
+        });
 
 
-        document.body.appendChild(btn);
+        
         document.body.appendChild(container_div);
+        document.body.appendChild(btn);
 
  
 
