@@ -18,8 +18,21 @@
             square.classList.add('grid-square');
             container_div.appendChild(square);
 
-            square.addEventListener("")
+            square.addEventListener("mouseenter", ()=> 
+            {
+                square.style.backgroundColor = "black";
+            })
+
+            square.addEventListener("mouseleave", ()=> 
+            {
+                setTimeout(()=> 
+                {
+                    square.style.backgroundColor = "white";
+                }, 2000);         
+            })
         }
+
+
 
         
 
